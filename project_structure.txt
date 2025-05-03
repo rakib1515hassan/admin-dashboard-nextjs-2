@@ -1,0 +1,39 @@
+/my_admin
+|-- /public
+|   |-- /icon
+|   |-- /logo
+|   
+|-- /src
+|   |-- /app
+|   |   |-- /page.js                 # Root page (index.js)
+|   |   |-- /layout.js               # Root layout for the entire app
+|   |   |
+|   |   |-- /(dashboard)
+|   |   |   |--/(auth)
+|   |   |   |   |--/login
+|   |   |   |   |  |-- page.jsx
+|   |   |   |   |--/register
+|   |   |   |   |  |-- page.jsx
+|   |   |   |-- /blog                # Blog route folder
+|   |   |   |   |-- page.js          # Blog page
+|   |   |   |   |-- /[slug]          # Dynamic route for individual posts
+|   |   |   |   |   |-- page.js
+|   |   
+|   |-- /components  # Shared components (Header, Footer, etc.)
+|   |   |-- /layout
+|   |   |   |-- Navbar.jsx
+|   |   |   |-- Sidebar.jsx
+|   |   |   |-- SidebarContext.jsx
+|   |   |   |-- ThemeContext.jsx
+|   |   |    
+|   |   |-- /lib                     # Create Utils file
+|   |   |-- /styles
+|   |   |   |-- globals.css
+|   |   |   |-- Home.module.css
+|-- next.config.mjs
+|-- package.json
+|-- .gitignore
+|-- README.md
+
+
+

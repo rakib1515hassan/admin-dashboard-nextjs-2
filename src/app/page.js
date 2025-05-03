@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Navbar from "./components/layout/Navbar";
-import Sidebar from "./components/layout/Sidebar";
-import { SidebarProvider } from "./components/layout/SidebarContext";
+import Navbar from "../components/layout/Navbar";
+import Sidebar from "../components/layout/Sidebar";
+import { SidebarProvider } from "../components/layout/SidebarContext";
 
 export default function Home() {
   return (

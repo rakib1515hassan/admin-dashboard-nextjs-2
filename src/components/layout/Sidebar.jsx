@@ -19,7 +19,7 @@ import {
 
 const Sidebar = () => {
   const { isSidebarOpen } = useSidebar();
-  const [activeLink, setActiveLink] = useState('dashboard'); // Add state for active link
+  const [activeLink, setActiveLink] = useState('dashboard'); 
 
   const handleLinkClick = (linkName) => {
     setActiveLink(linkName);
