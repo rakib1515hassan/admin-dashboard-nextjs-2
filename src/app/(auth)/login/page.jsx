@@ -4,7 +4,6 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 
-import FacebookLoginButton from "@/components/auth/FacebookLoginButton";
 import GoogleLoginButton from "@/components/auth/GoogleLoginButton";
 
 const LoginPage = () => {
@@ -49,7 +48,6 @@ const LoginPage = () => {
 
         <div className="space-y-3">
           <GoogleLoginButton />
-          <FacebookLoginButton />
         </div>
 
         <div className="flex items-center my-6">
