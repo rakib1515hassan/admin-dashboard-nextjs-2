@@ -28,18 +28,18 @@ const Sidebar = () => {
   const getLinkClass = (linkName) => {
     return `flex items-center px-4 py-2 text-sm ${
       activeLink === linkName
-        ? "text-white bg-purple-700"
-        : "text-gray-600 hover:bg-purple-300 hover:text-zinc-900 dark:text-gray-300 dark:hover:bg-gray-700"
+        ? "text-white bg-purple-700 dark:text-gray-800 dark:bg-white"
+        : "text-gray-600 hover:bg-purple-300 hover:text-zinc-900 dark:text-gray-300 dark:hover:bg-gray-300"
     } rounded-lg`;
   };
 
   return (
     <aside
-      className={`fixed top-0 left-0 z-20 h-full flex flex-col bg-gradient-to-b from-gray-100 to-gray-50 border-r border-gray-200 transition-transform duration-300 ease-in-out ${
+      className={`fixed top-0 left-0 z-20 h-full flex flex-col transition-transform duration-300 ease-in-out ${
         isSidebarOpen
           ? "translate-x-0 w-64"
           : "-translate-x-full w-64 lg:translate-x-0"
-      }`}
+      } border-r border-gray-200 bg-white dark:bg-slate-600`}
     >
       {/* Logo Section */}
       <div className="flex items-center p-4 h-16">
@@ -51,7 +51,9 @@ const Sidebar = () => {
             height={32}
             className="rounded-lg"
           />
-          <span className="text-xl font-semibold text-gray-800">zynix</span>
+          <span className="text-xl font-semibold text-gray-800 dark:text-white">
+            zynix
+          </span>
         </div>
       </div>
 
