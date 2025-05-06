@@ -1,207 +1,125 @@
 "use client";
-import Image from "next/image";
-import { useSidebar } from "./SidebarContext";
+
 import { useState } from "react";
 import {
-  RiDashboardLine,
-  RiAppsLine,
-  RiMenuLine,
-  RiLockPasswordLine,
-  RiErrorWarningLine,
-  RiFileTextLine,
-  RiFileList3Line,
-  RiPaintBrushLine,
-  RiLayoutGridLine,
-  RiMapPinLine,
-  RiImageLine,
-  RiBarChartBoxLine,
-} from "react-icons/ri";
+  HomeIcon,
+  CogIcon,
+  UserIcon,
+  ChevronDownIcon,
+  ChevronRightIcon,
+  ChartBarIcon,
+} from "@heroicons/react/24/outline";
 
 const Sidebar = () => {
-  const { isSidebarOpen } = useSidebar();
-  const [activeLink, setActiveLink] = useState("dashboard");
+  const [isOpen, setIsOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [submenuOpen, setSubmenuOpen] = useState(false);
+  const [activeItem, setActiveItem] = useState("Reports");
 
-  const handleLinkClick = (linkName) => {
-    setActiveLink(linkName);
-  };
-
-  const getLinkClass = (linkName) => {
-    return `flex items-center px-4 py-2 text-sm ${
-      activeLink === linkName
-        ? "text-white bg-purple-700 dark:text-gray-800 dark:bg-white"
-        : "text-gray-600 hover:bg-purple-300 hover:text-zinc-900 dark:text-gray-300 dark:hover:bg-gray-300"
-    } rounded-lg`;
-  };
-
+  const sidebarWidth = isOpen || isHovered ? "w-64" : "w-16";
+  const isSidebar = isOpen || isHovered;
   return (
-    <aside
-      className={`fixed top-0 left-0 z-20 h-full flex flex-col transition-transform duration-300 ease-in-out ${
-        isSidebarOpen
-          ? "translate-x-0 w-64"
-          : "-translate-x-full w-64 lg:translate-x-0"
-      } border-r border-gray-200 bg-white dark:bg-slate-600`}
-    >
-      {/* Logo Section */}
-      <div className="flex items-center p-4 h-16">
-        <div className="flex items-center gap-2">
-          <Image
-            src="/logo/dekkoisho-icon-512x512-1.png"
-            alt="Logo"
-            width={32}
-            height={32}
-            className="rounded-lg"
-          />
-          <span className="text-xl font-semibold text-gray-800 dark:text-white">
-            zynix
-          </span>
-        </div>
+    <div className="fixed top-0 left-0 z-50">
+      <div
+        className={`h-screen bg-white border-r border-gray-400 text-black transition-all duration-300 ${sidebarWidth} flex flex-col py-4 `}
+        onMouseEnter={() => !isOpen && setIsHovered(true)}
+        onMouseLeave={() => !isOpen && setIsHovered(false)}
+      >
+        <nav className="flex-1 overflow-y-auto space-y-2">
+          {/* Home - Styled like header with bottom border */}
+          <div
+            className={`border-b px-2 border-gray-400 ${
+              isSidebar ? "pb-2" : "pb-3"
+            } mb-2 px-1`}
+          >
+            <NavItem
+              icon={<HomeIcon className="w-5 h-5" />}
+              label="Home"
+              isOpen={isOpen || isHovered}
+              active={activeItem === "Home"}
+              onClick={() => setActiveItem("Home")}
+            />
+          </div>
+
+          <div className="px-2">
+            <NavItem
+              icon={<UserIcon className="w-5 h-5" />}
+              label="Clients"
+              isOpen={isOpen || isHovered}
+              active={activeItem === "Clients"}
+              onClick={() => setActiveItem("Clients")}
+            />
+          </div>
+
+          {/* Reports With Submenu */}
+          <div className="space-y-1 px-2">
+            <div
+              className={`flex items-center justify-between px-3 py-2 rounded-lg cursor-pointer ${
+                activeItem === "Reports"
+                  ? "bg-[#502E91] text-white"
+                  : "hover:bg-gray-200"
+              }`}
+              onClick={() => {
+                setSubmenuOpen(!submenuOpen);
+                setActiveItem("Reports");
+              }}
+            >
+              <div className="flex items-center gap-3">
+                <ChartBarIcon className="w-5 h-5" />
+                {(isOpen || isHovered) && <span>Reports</span>}
+              </div>
+              {(isOpen || isHovered) &&
+                (submenuOpen ? (
+                  <ChevronDownIcon className="w-4 h-4" />
+                ) : (
+                  <ChevronRightIcon className="w-4 h-4" />
+                ))}
+            </div>
+
+            {submenuOpen && (isOpen || isHovered) && (
+              <div className="ml-9 space-y-1 text-sm text-gray-700">
+                {["Overview", "Rankings", "Backlinks"].map((item) => (
+                  <div
+                    key={item}
+                    onClick={() => setActiveItem(item)}
+                    className={`cursor-pointer rounded-lg px-2 py-1 ${
+                      activeItem === item
+                        ? "bg-[#502E91] text-white"
+                        : "hover:bg-gray-200"
+                    }`}
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div className="px-2">
+            <NavItem
+              icon={<CogIcon className="w-5 h-5" />}
+              label="Settings"
+              isOpen={isOpen || isHovered}
+              active={activeItem === "Settings"}
+              onClick={() => setActiveItem("Settings")}
+            />
+          </div>
+        </nav>
       </div>
-
-      {/* Sidebar Content */}
-      <div className="flex-1 overflow-y-auto">
-        {/* Dashboards Section */}
-        <div className="px-3 py-2">
-          <h3 className="px-4 text-xs font-medium text-gray-400 uppercase tracking-wider">
-            DASHBOARDS
-          </h3>
-          <div className="mt-2">
-            <a
-              href="#"
-              onClick={() => handleLinkClick("dashboard")}
-              className={getLinkClass("dashboard")}
-            >
-              <RiDashboardLine className="w-5 h-5 mr-3" />
-              Dashboards
-            </a>
-          </div>
-        </div>
-
-        {/* Web Apps Section */}
-        <div className="px-3 py-2">
-          <h3 className="px-4 text-xs font-medium text-gray-400 uppercase tracking-wider">
-            WEB APPS
-          </h3>
-          <div className="mt-2 space-y-1">
-            <a
-              href="#"
-              onClick={() => handleLinkClick("apps")}
-              className={getLinkClass("apps")}
-            >
-              <RiAppsLine className="w-5 h-5 mr-3" />
-              Apps
-            </a>
-            <a
-              href="#"
-              onClick={() => handleLinkClick("nested-menu")}
-              className={getLinkClass("nested-menu")}
-            >
-              <RiMenuLine className="w-5 h-5 mr-3" />
-              Nested Menu
-            </a>
-          </div>
-        </div>
-
-        {/* Crafted Section */}
-        <div className="px-3 py-2">
-          <h3 className="px-4 text-xs font-medium text-gray-400 uppercase tracking-wider">
-            CRAFTED
-          </h3>
-          <div className="mt-2 space-y-1">
-            <a
-              href="#"
-              onClick={() => handleLinkClick("authentication")}
-              className={getLinkClass("authentication")}
-            >
-              <RiLockPasswordLine className="w-5 h-5 mr-3" />
-              Authentication
-            </a>
-            <a
-              href="#"
-              onClick={() => handleLinkClick("error")}
-              className={getLinkClass("error")}
-            >
-              <RiErrorWarningLine className="w-5 h-5 mr-3" />
-              Error
-            </a>
-            <a
-              href="#"
-              onClick={() => handleLinkClick("pages")}
-              className={getLinkClass("pages")}
-            >
-              <RiFileTextLine className="w-5 h-5 mr-3" />
-              Pages
-            </a>
-          </div>
-        </div>
-
-        {/* Modules Section */}
-        <div className="px-3 py-2">
-          <h3 className="px-4 text-xs font-medium text-gray-400 uppercase tracking-wider">
-            MODULES
-          </h3>
-          <div className="mt-2 space-y-1">
-            <a
-              href="#"
-              onClick={() => handleLinkClick("forms")}
-              className={getLinkClass("forms")}
-            >
-              <RiFileList3Line className="w-5 h-5 mr-3" />
-              Forms
-            </a>
-            <a
-              href="#"
-              onClick={() => handleLinkClick("ui-elements")}
-              className={getLinkClass("ui-elements")}
-            >
-              <RiPaintBrushLine className="w-5 h-5 mr-3" />
-              UI Elements
-            </a>
-            <a
-              href="#"
-              onClick={() => handleLinkClick("widgets")}
-              className={getLinkClass("widgets")}
-            >
-              <RiLayoutGridLine className="w-5 h-5 mr-3" />
-              Widgets
-            </a>
-          </div>
-        </div>
-
-        {/* Tools & Components Section */}
-        <div className="px-3 py-2">
-          <h3 className="px-4 text-xs font-medium text-gray-400 uppercase tracking-wider">
-            TOOLS & COMPONENTS
-          </h3>
-          <div className="mt-2 space-y-1">
-            <a
-              href="#"
-              onClick={() => handleLinkClick("maps")}
-              className={getLinkClass("maps")}
-            >
-              <RiMapPinLine className="w-5 h-5 mr-3" />
-              Maps
-            </a>
-            <a
-              href="#"
-              onClick={() => handleLinkClick("icons")}
-              className={getLinkClass("icons")}
-            >
-              <RiImageLine className="w-5 h-5 mr-3" />
-              Icons
-            </a>
-            <a
-              href="#"
-              onClick={() => handleLinkClick("charts")}
-              className={getLinkClass("charts")}
-            >
-              <RiBarChartBoxLine className="w-5 h-5 mr-3" />
-              Charts
-            </a>
-          </div>
-        </div>
-      </div>
-    </aside>
+    </div>
   );
 };
+
+const NavItem = ({ icon, label, isOpen, active, onClick }) => (
+  <div
+    className={`flex items-center gap-4 px-3 py-2 rounded-lg cursor-pointer ${
+      active ? "bg-[#502E91] text-white" : "hover:bg-gray-200"
+    }`}
+    onClick={onClick}
+  >
+    {icon}
+    {isOpen && <span>{label}</span>}
+  </div>
+);
 
 export default Sidebar;

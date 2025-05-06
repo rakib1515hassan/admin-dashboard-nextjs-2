@@ -12,9 +12,9 @@ const Navbar = () => {
   // Handle dark mode
   useEffect(() => {
     if (isDarkMode) {
-      document.documentElement.classList.add('dark');
+      document.documentElement.classList.add("dark");
     } else {
-      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove("dark");
     }
   }, [isDarkMode]);
 
@@ -34,11 +34,11 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 z-50">
+    <nav className="bg-white md:col-start-2 md:col-end-5 dark:bg-gray-800 border-b border-gray-400 dark:border-gray-700 z-40">
       <div className="flex items-center justify-between h-16 px-4">
         {/* Left side - Menu toggle and Search */}
         <div className="flex items-center gap-4">
-          <button 
+          <button
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
             className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
           >
@@ -82,7 +82,7 @@ const Navbar = () => {
         {/* Right side - Icons and Profile */}
         <div className="flex items-center gap-4">
           {/* Dark Mode Toggle */}
-          <button 
+          <button
             onClick={() => setIsDarkMode(!isDarkMode)}
             className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
           >
@@ -136,7 +136,7 @@ const Navbar = () => {
           </button>
 
           {/* Fullscreen Toggle */}
-          <button 
+          <button
             onClick={toggleFullscreen}
             className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
           >
@@ -178,7 +178,9 @@ const Navbar = () => {
               alt="Profile"
               className="w-8 h-8 rounded-full"
             />
-            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Mr. Jack</span>
+            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              Mr. Jack
+            </span>
           </div>
         </div>
       </div>
