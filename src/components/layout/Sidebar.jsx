@@ -21,12 +21,11 @@ const Sidebar = () => {
   return (
     <div className="fixed top-0 left-0 z-50">
       <div
-        className={`h-screen bg-white border-r border-gray-400 text-black transition-all duration-300 ${sidebarWidth} flex flex-col py-4 `}
+        className={`h-screen bg-white border-r border-gray-400 text-black transition-all duration-300 ${sidebarWidth} flex flex-col py-4`}
         onMouseEnter={() => !isOpen && setIsHovered(true)}
         onMouseLeave={() => !isOpen && setIsHovered(false)}
       >
-        <nav className="flex-1 overflow-y-auto space-y-2">
-          {/* Home - Styled like header with bottom border */}
+        <nav className="flex-1 space-y-2">
           <div
             className={`border-b px-2 border-gray-400 ${
               isSidebar ? "pb-2" : "pb-3"

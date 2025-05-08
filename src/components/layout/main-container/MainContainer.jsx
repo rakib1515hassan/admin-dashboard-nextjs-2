@@ -4,10 +4,10 @@ import React from "react";
 const MainContainer = ({ children }) => {
   return (
     <main
-      className="pt-5 sm:pl-7 sm:pr-4 overflow-y-auto md:col-start-2 md:col-end-5 md:row-start-2"
+      className="overflow-y-auto md:col-start-2 md:col-end-5 md:row-start-2"
       style={{ scrollbarWidth: "none" }}
     >
-      <div className="w-full h-full bg-white">{children}</div>
+      <div className="w-full h-full pl-20 p-4 bg-gray-100">{children}</div>
     </main>
   );
 };

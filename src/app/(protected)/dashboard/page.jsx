@@ -6,9 +6,7 @@ export default function Dashboard() {
   return (
     <MainLayout>
       <MainContainer>
-        <div className="bg-red-500">
-          <DashboardCard />
-        </div>
+        <DashboardCard />
       </MainContainer>
     </MainLayout>
   );
