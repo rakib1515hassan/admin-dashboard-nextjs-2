@@ -21,7 +21,7 @@ const Sidebar = () => {
   return (
     <div className="fixed top-0 left-0 z-50">
       <div
-        className={`h-screen bg-white border-r border-gray-400 text-black transition-all duration-300 ${sidebarWidth} flex flex-col py-4`}
+        className={`h-screen bg-white border-r-[.5px] border-gray-400 text-black transition-all duration-300 ${sidebarWidth} flex flex-col py-4`}
         onMouseEnter={() => !isOpen && setIsHovered(true)}
         onMouseLeave={() => !isOpen && setIsHovered(false)}
       >

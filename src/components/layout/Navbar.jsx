@@ -31,7 +31,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white md:col-start-2 md:col-end-5 dark:bg-gray-800 border-b border-gray-400 dark:border-gray-700 z-40">
+    <nav className="bg-white md:col-start-2 md:col-end-5 dark:bg-gray-800 border-b-[.5px] border-gray-400 dark:border-gray-700 z-40">
       <div className="flex items-center justify-between h-16 pl-20 px-4">
         {/* Left side - Menu toggle and Search */}
         <div className="flex items-center gap-4">

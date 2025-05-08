@@ -2,7 +2,7 @@ import React from "react";
 
 const DashboardCard = () => {
   return (
-    <div className="p-2 bg-red-600 dark:bg-gray-800 rounded-lg shadow-md">
+    <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border-[.5px] border-gray-400">
       {/* Welcome Section */}
       <div className="mb-8">
         <h1 className="text-2xl font-semibold text-gray-800 dark:text-white">
