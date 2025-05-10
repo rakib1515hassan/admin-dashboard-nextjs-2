@@ -53,7 +53,7 @@ const Sidebar = () => {
           {/* Reports With Submenu */}
           <div className="space-y-1 px-2">
             <div
-              className={`flex items-center justify-between px-3 py-2 rounded-lg cursor-pointer ${
+              className={`flex items-center justify-between px-3 py-2 rounded-lg cursor-pointer transition-colors duration-200 ${
                 activeItem === "Reports"
                   ? "bg-[#502E91] text-white"
                   : "hover:bg-gray-200"
@@ -65,9 +65,9 @@ const Sidebar = () => {
             >
               <div className="flex items-center gap-3">
                 <ChartBarIcon className="w-5 h-5" />
-                {(isOpen || isHovered) && <span>Reports</span>}
+                {isSidebar && <span>Reports</span>}
               </div>
-              {(isOpen || isHovered) &&
+              {isSidebar &&
                 (submenuOpen ? (
                   <ChevronDownIcon className="w-4 h-4" />
                 ) : (
@@ -75,13 +75,20 @@ const Sidebar = () => {
                 ))}
             </div>
 
-            {submenuOpen && (isOpen || isHovered) && (
-              <div className="ml-9 space-y-1 text-sm text-gray-700">
+            {/* Animate submenu */}
+            <div
+              className={`ml-9 overflow-hidden transition-all duration-300 ease-in-out ${
+                submenuOpen && isSidebar
+                  ? "max-h-40 opacity-100"
+                  : "max-h-0 opacity-0"
+              }`}
+            >
+              <div className="space-y-1 text-sm text-gray-700">
                 {["Overview", "Rankings", "Backlinks"].map((item) => (
                   <div
                     key={item}
                     onClick={() => setActiveItem(item)}
-                    className={`cursor-pointer rounded-lg px-2 py-1 ${
+                    className={`cursor-pointer rounded-lg px-2 py-1 transition-colors duration-200 ${
                       activeItem === item
                         ? "bg-[#502E91] text-white"
                         : "hover:bg-gray-200"
@@ -91,7 +98,7 @@ const Sidebar = () => {
                   </div>
                 ))}
               </div>
-            )}
+            </div>
           </div>
 
           <div className="px-2">
