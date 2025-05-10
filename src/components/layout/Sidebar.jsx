@@ -8,6 +8,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
   ChartBarIcon,
+  ChevronUpIcon,
 } from "@heroicons/react/24/outline";
 
 const Sidebar = () => {
@@ -69,9 +70,9 @@ const Sidebar = () => {
               </div>
               {isSidebar &&
                 (submenuOpen ? (
-                  <ChevronDownIcon className="w-4 h-4" />
+                  <ChevronUpIcon className="w-4 h-4" />
                 ) : (
-                  <ChevronRightIcon className="w-4 h-4" />
+                  <ChevronDownIcon className="w-4 h-4" />
                 ))}
             </div>
 
