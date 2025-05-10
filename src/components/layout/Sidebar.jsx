@@ -6,9 +6,13 @@ import {
   CogIcon,
   UserIcon,
   ChevronDownIcon,
-  ChevronRightIcon,
   ChartBarIcon,
   ChevronUpIcon,
+  GlobeAltIcon,
+  SignalIcon,
+  LinkIcon,
+  FaceSmileIcon,
+  BriefcaseIcon,
 } from "@heroicons/react/24/outline";
 
 const Sidebar = () => {
@@ -29,11 +33,11 @@ const Sidebar = () => {
         <nav className="flex-1 space-y-2">
           <div
             className={`border-b px-2 border-gray-400 ${
-              isSidebar ? "pb-2" : "pb-3"
+              isSidebar ? "pb-2" : "pb-4"
             } mb-2 px-1`}
           >
             <NavItem
-              icon={<HomeIcon className="w-5 h-5" />}
+              icon={<HomeIcon className="w-4 h-4" />}
               label="Home"
               isOpen={isOpen || isHovered}
               active={activeItem === "Home"}
@@ -43,7 +47,7 @@ const Sidebar = () => {
 
           <div className="px-2">
             <NavItem
-              icon={<UserIcon className="w-5 h-5" />}
+              icon={<UserIcon className="w-4 h-4" />}
               label="Clients"
               isOpen={isOpen || isHovered}
               active={activeItem === "Clients"}
@@ -52,7 +56,7 @@ const Sidebar = () => {
           </div>
 
           {/* Reports With Submenu */}
-          <div className="space-y-1 px-2">
+          <div className="px-2">
             <div
               className={`flex items-center justify-between px-3 py-2 rounded-lg cursor-pointer transition-colors duration-200 ${
                 activeItem === "Reports"
@@ -65,7 +69,7 @@ const Sidebar = () => {
               }}
             >
               <div className="flex items-center gap-3">
-                <ChartBarIcon className="w-5 h-5" />
+                <ChartBarIcon className="w-4 h-4" />
                 {isSidebar && <span>Reports</span>}
               </div>
               {isSidebar &&
@@ -76,26 +80,47 @@ const Sidebar = () => {
                 ))}
             </div>
 
-            {/* Animate submenu */}
             <div
-              className={`ml-9 overflow-hidden transition-all duration-300 ease-in-out ${
+              className={`overflow-hidden transition-all duration-300 ease-in-out ${
                 submenuOpen && isSidebar
-                  ? "max-h-40 opacity-100"
+                  ? "max-h-60 opacity-100"
                   : "max-h-0 opacity-0"
               }`}
             >
-              <div className="space-y-1 text-sm text-gray-700">
-                {["Overview", "Rankings", "Backlinks"].map((item) => (
+              <div className="space-y-2 text-sm pt-1">
+                {[
+                  {
+                    label: "Overview",
+                    icon: <GlobeAltIcon className="w-4 h-4" />,
+                  },
+                  {
+                    label: "Rankings",
+                    icon: <SignalIcon className="w-4 h-4" />,
+                  },
+                  {
+                    label: "Backlinks",
+                    icon: <LinkIcon className="w-4 h-4" />,
+                  },
+                  {
+                    label: "Facebook",
+                    icon: <FaceSmileIcon className="w-4 h-4" />,
+                  },
+                  {
+                    label: "Linkedin",
+                    icon: <BriefcaseIcon className="w-4 h-4" />,
+                  },
+                ].map(({ label, icon }) => (
                   <div
-                    key={item}
-                    onClick={() => setActiveItem(item)}
-                    className={`cursor-pointer rounded-lg px-2 py-1 transition-colors duration-200 ${
-                      activeItem === item
+                    key={label}
+                    onClick={() => setActiveItem(label)}
+                    className={`flex items-center gap-4 px-3 py-2 rounded-lg cursor-pointer transition-colors duration-200 ${
+                      activeItem === label
                         ? "bg-[#502E91] text-white"
                         : "hover:bg-gray-200"
                     }`}
                   >
-                    {item}
+                    {icon}
+                    <span>{label}</span>
                   </div>
                 ))}
               </div>
@@ -104,7 +129,7 @@ const Sidebar = () => {
 
           <div className="px-2">
             <NavItem
-              icon={<CogIcon className="w-5 h-5" />}
+              icon={<CogIcon className="w-4 h-4" />}
               label="Settings"
               isOpen={isOpen || isHovered}
               active={activeItem === "Settings"}
